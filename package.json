@@ -18,7 +18,7 @@
   "private": true,
   "cds": {
     "requires": {
-      "auth": "xsuaa",
+       "auth": "xsuaa",
       "[hybrid]": {
         "auth": "mocked"
       }
