@@ -1,6 +1,6 @@
 _schema-version: 3.3.0
 ID: sodales
-version: 1.0.0
+version: 1.0.1
 description: "A simple CAP project."
 parameters:
   enable-parallel-deployments: true
@@ -30,7 +30,7 @@ modules:
 
   - name: sodales-db-deployer
     type: hdb
-    path: gen/db
+    path: db
     parameters:
       buildpack: nodejs_buildpack
       memory: 100M
