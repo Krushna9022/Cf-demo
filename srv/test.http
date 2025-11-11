@@ -1,0 +1,16 @@
+
+### 
+POST http://localhost:4004/odata/v4/employee/rlQ2Em7VGztsJeed
+Content-Type: application/json
+
+{
+  "D4OXYPALUYAIDNSO": "{\"EMPID\":0,\"EMPNM\":\"John Doe\",\"EMPLN\":\"Doe\",\"DEPT\":\"HR\",\"SALRY\":55000}"
+}
+
+###
+POST http://localhost:4004/odata/v4/employee/pMYJwhvPSLqeMbKk
+Content-Type: application/json
+
+{
+  "D4OXYPALUYAIDNSO": "[{\"STDID\":0,\"NAME\":\"JohnDoe\",\"docs\":[{\"DOCID\":0,\"DOCMN\":\"PAN\",\"DFILE\":\"ABCDE1234F\"},{\"DOCID\":0,\"DOCMN\":\"AADHAR\",\"DFILE\":\"123456789012\"}]},{\"STDID\":0,\"NAME\":\"JaneSmith\",\"docs\":[{\"DOCID\":0,\"DOCMN\":\"PAN\",\"DFILE\":\"FGHIJ5678K\"},{\"DOCID\":0,\"DOCMN\":\"AADHAR\",\"DFILE\":\"234567890123\"}]},{\"STDID\":0,\"NAME\":\"MichaelJohnson\",\"docs\":[{\"DOCID\":0,\"DOCMN\":\"PAN\",\"DFILE\":\"LMNOP9012Q\"},{\"DOCID\":0,\"DOCMN\":\"AADHAR\",\"DFILE\":\"345678901234\"}]},{\"STDID\":0,\"NAME\":\"EmilyDavis\",\"docs\":[{\"DOCID\":0,\"DOCMN\":\"PAN\",\"DFILE\":\"RSTUV3456W\"},{\"DOCID\":0,\"DOCMN\":\"AADHAR\",\"DFILE\":\"456789012345\"}]}]"
+}
