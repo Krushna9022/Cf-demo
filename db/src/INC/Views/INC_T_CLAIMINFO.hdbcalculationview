@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="INC_T_CLAIMINFO" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="INC_T_CLAIMINFO"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="INC_T_CLAIM">
+    <resourceUri>INC_T_CLAIM</resourceUri>
+  </DataSource>
+  <DataSource id="INC_T_CLAMNT">
+    <resourceUri>INC_T_CLAMNT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="CLMID"/>
+      <viewAttribute id="CLMTP"/>
+      <viewAttribute id="SUBTY"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="INC_T_CLAIM"/>
+  
+    <filter>&quot;ISDEL&quot;='0'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="CLLID"/>
+      <viewAttribute id="CLMID"/>
+      <viewAttribute id="CLMNM"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="INC_T_CLAMNT"/>
+  
+    <filter>&quot;ISDEL&quot;='0'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CLMID"/>
+      <viewAttribute id="CLMTP"/>
+      <viewAttribute id="SUBTY"/>
+      <viewAttribute id="CLLID"/>
+      <viewAttribute id="CLMNM"/>
+      <viewAttribute id="ISDEL"/>
+      <viewAttribute hidden="true" id="JOIN$CLMID$CLMID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLMID" source="CLMID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLMTP" source="CLMTP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUBTY" source="SUBTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLMID$CLMID" source="CLMID"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLLID" source="CLLID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CLMNM" source="CLMNM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ISDEL" source="ISDEL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLMID$CLMID" source="CLMID"/>
+    </input>
+    <joinAttribute name="JOIN$CLMID$CLMID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="CLMID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLMID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CLMID"/>
+    </attribute>
+    <attribute id="CLMTP" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLMTP"/>
+      <keyMapping columnObjectName="Join_1" columnName="CLMTP"/>
+    </attribute>
+    <attribute id="SUBTY" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SUBTY"/>
+      <keyMapping columnObjectName="Join_1" columnName="SUBTY"/>
+    </attribute>
+    <attribute id="CLLID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLLID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CLLID"/>
+    </attribute>
+    <attribute id="CLMNM" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLMNM"/>
+      <keyMapping columnObjectName="Join_1" columnName="CLMNM"/>
+    </attribute>
+    <attribute id="ISDEL" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ISDEL"/>
+      <keyMapping columnObjectName="Join_1" columnName="ISDEL"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-48" y="312"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="195" y="312"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="82" y="171"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

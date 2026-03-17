@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="GRV_T_STEWARDEMPLY" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="GRV_LV1_STEWARDEMPLY"/>
+<localVariables>
+  <variable id="XR5Fke" parameter="true">
+    <descriptions defaultDescription="XR5Fke"/>
+    <variableProperties datatype="INTEGER" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="Icybc7" parameter="true">
+    <descriptions defaultDescription="Icybc7"/>
+    <variableProperties datatype="INTEGER" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="INC_T_CLAMNT">
+    <resourceUri>INC_T_CLAMNT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL" ignoreMultipleOutputsForFilter="false">
+    <viewAttributes>
+      <viewAttribute id="CLLID"/>
+      <viewAttribute id="CLMID"/>
+      <viewAttribute id="CLMNM"/>
+      <viewAttribute id="ISDEL"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="INC_T_CLAMNT"/>
+    <filter>&quot;ISDEL&quot;=0 AND &quot;CLLID&quot;=$$XR5Fke$$ AND &quot;CLMID&quot;=$$Icybc7$$</filter>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="CLLID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLLID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CLLID"/>
+    </attribute>
+    <attribute id="CLMID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLMID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CLMID"/>
+    </attribute>
+    <attribute id="CLMNM" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CLMNM"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CLMNM"/>
+    </attribute></attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="110" y="227"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

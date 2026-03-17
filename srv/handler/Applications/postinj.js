@@ -78,9 +78,10 @@ async function createUpdateEmp(req) {
     try {
         let result, oEMLID;
         tx = cds.tx(req);
-        payload = req.data;
+        payload = req.data; 
         oEMP = JSON.parse(payload.D4OXYPALUYAIDNSO);
-        console.log(oEMP);
+        console.log(oEMP.EMPID);
+
         
         // oInput = await decryptAES(payload.D4OXYPALUYAIDNSO, cds.transaction(req));
  
@@ -90,15 +91,12 @@ async function createUpdateEmp(req) {
         // await checkMandatoryFields(oNotes, ['NOTID']);
  
         // Procedure for Reopening the case
-result = await tx.run('CALL "prCreateUp"(?,?,?,?,?,?)',
-                      setValue(oEMP.EMPID),
-                      setValue(oEMP.EMPNM),
-                      setValue(oEMP.EMPLN),
-                      setValue(oEMP.DEPT),
-                      setValue(oEMP.SALRY)
-                      
-                   );
-        OEMLID = result.EID;
+result = await tx.run('CALL "prCreateUpdateEmplo"(?,?,?,?)',
+                      [oEMP.EMPID,
+                      oEMP.EMPNM,
+                      oEMP.SALRY]
+                      );
+        oEMLID = result.OEMID;
        
  
  
@@ -112,7 +110,7 @@ result = await tx.run('CALL "prCreateUp"(?,?,?,?,?,?)',
         // success
         returnObj = {
             "Success": "Employee Saved Successfully.",
-            "OEMLID" : OEMLID
+            "OEMLID" : oEMLID
         };
  
         // await tx.commit();

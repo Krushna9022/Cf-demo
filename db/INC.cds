@@ -1,33 +1,36 @@
+// npm install -g hana-cli
+// hana-cli inspectView -v YOUR_CALCULATION_VIEWNAME-o cds
+// cds deploy --to hana
+// cds watch --profile hybrid
+
 namespace INC;
 
+context M{
+    @cds.persistence.exists 
+    @cds.persistence.calcview 
+    entity EMPLOEEDETAILS {
+    key     EMPID: Integer  @title: 'EMPID: EMPID' ; 
+            EMPNM: String(100)  @title: 'EMPNM: EMPNM' ; 
+            SALRY: String(200)  @title: 'SALRY: SALRY' ; 
+    }
+}
 
-context T {
-        @cds.persistence.exists
-        @cds.persistence.calcview
-        entity EMP {
-                key EMP_ID     : Integer     @title: 'EMP_ID: EMP_ID';
-                    FIRST_NAME : String(50)  @title: 'FIRST_NAME: FIRST_NAME';
-                    LAST_NAME  : String(50)  @title: 'LAST_NAME: LAST_NAME';
-                    DEPARTMENT : String(50)  @title: 'DEPARTMENT: DEPARTMENT';
-                    SALARY     : Decimal(10) @title: 'SALARY: SALARY';
-        }
+context T{
+    @cds.persistence.exists 
+    @cds.persistence.calcview 
+    entity CLAIMINFO {
+    key     CLMID: Integer  @title: 'CLMID: CLMID' ; 
+            CLMTP: String(20)  @title: 'CLMTP: CLMTP' ; 
+            SUBTY: String(20)  @title: 'SUBTY: SUBTY' ; 
+            CLLID: Integer  @title: 'CLLID: CLLID' ; 
+            CLMNM: String(100)  @title: 'CLMNM: CLMNM' ; 
+            // ISDEL: String(1)  @title: 'ISDEL: ISDEL' ; 
+    }
 
-        @cds.persistence.exists
-        @cds.persistence.calcview
-        entity STDDOC {
-                key DOCID : Integer64   @title: 'DOCID: DOCID';
-                    STDID : Integer64   @title: 'STDID: STDID';
-                    DOCMN : String(255) @title: 'DOCMN: DOCMN';
-                    DFILE : String(255) @title: 'DFILE: DFILE';
-                    NAME  : String(100) @title: 'NAME: NAME';
-        }
-
-        @cds.persistence.exists
-        @cds.persistence.calcview
-        @cds.odata.resultset
-        entity STDVIEW(IP_1 : Integer64) {
-                key STDID : Integer64   @title: 'STDID: STDID';
-                    NAME  : String(100) @title: 'NAME: NAME';
-        }
-
+    @cds.persistence.exists 
+    @cds.persistence.calcview 
+    entity TOTALCLAIM {
+            CLLID: Integer64  @title: 'CLLID: CLLID' ; 
+            ISDEL: String(1)  @title: 'ISDEL: ISDEL' ; 
+    }
 }

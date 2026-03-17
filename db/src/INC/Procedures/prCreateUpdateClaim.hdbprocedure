@@ -1,0 +1,34 @@
+PROCEDURE "prCreateUpdateClaim"(
+    IN CLMID BIGINT ,
+        CLMTP NVARCHAR(20),
+        SUBTY NVARCHAR(20),
+    OUT OCLMID BIGINT    
+ )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   -- READS SQL DATA
+    AS
+BEGIN
+   /*************************************
+       Write your procedure logic
+   *************************************/
+   DECLARE COLUMN_ID INTEGER;
+   DECLARE QU NVARCHAR(150);
+   DECLARE SEQ NVARCHAR(100);
+
+   IF CLMID=0 THEN
+        INSERT INTO INC_T_CLAIM (CLMTP,SUBTY,ISDEL,CRTBY,CRTDT,CRTTM)
+        VALUES(:CLMTP,:SUBTY,'0',SESSION_CONTEXT('APPLICATIONUSER'),CURRENT_DATE,CURRENT_TIME);
+       
+        SELECT '"_SYS_SEQUENCE_' || COLUMN_ID || '_#0_#"' 
+        INTO SEQ 
+        FROM TABLE_COLUMNS 
+        WHERE TABLE_NAME = 'INC_T_CLAIM' 
+        AND COLUMN_NAME = 'CLMID';
+
+   QU := 'SELECT ' || :SEQ || '.CURRVAL FROM DUMMY';
+
+   EXECUTE IMMEDIATE :QU INTO OCLMID;
+   END IF;
+END;
