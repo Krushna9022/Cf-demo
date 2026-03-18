@@ -5,6 +5,26 @@ Content-Type: application/json
 
 {
   "D4OXYPALUYAIDNSO": "{\"EMPID\":3,\"EMPNM\":\"Dummy\",\"SALRY\":\"5000\" }"
+
 }
+
+###
+PATCH  http://localhost:4004/odata/v4/test/Author(db91cd91-5b51-4b0c-882c-d6f3bf6c2c0a)
+Content-Type: application/json
+
+{
+  "name": "abcdef"
+}
+
+###
+POST http://localhost:4004/odata/v4/test/Books
+Content-Type: application/json
+
+{
+  "title": "CAPm",
+  "stock": 5,
+  "author_ID": "db91cd91-5b51-4b0c-882c-d6f3bf6c2c0a"
+}
+
 
 

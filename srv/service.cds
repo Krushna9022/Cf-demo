@@ -1,6 +1,7 @@
 // using {EmployeeService} from './role/role';
 using {INC} from '../db/INC';
 using {GRV} from '../db/GRV';
+using {my.app as db} from '../db/Schema';
 service test{
  entity employeedetail as projection on INC.M.EMPLOEEDETAILS;
  entity claimntinfo as projection on INC.T.CLAIMINFO;
@@ -8,7 +9,8 @@ service test{
  @readonly view hhhhjhhj(XR5Fke : Integer, Icybc7 : Integer)
  as select from GRV.T.STEWARDEMPLY(XR5Fke : :XR5Fke,Icybc7 : :Icybc7){ * };
 
-
+ entity Books as projection on db.Books;
+ entity Author as projection on db.Authors;
  action empdetailpost(D4OXYPALUYAIDNSO : String) returns String;
 
 }
